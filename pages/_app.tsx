@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 import { useStore } from '../src/store';
+import 'antd/dist/antd.css';
 
 const GlobalStyle = createGlobalStyle`
   *{

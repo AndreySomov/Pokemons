@@ -1,16 +1,13 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
-import { Pokemon } from '../../react-app-env';
+import { Pokemon } from '@types';
 
 import Stats from './Stats';
 import Info from './Info';
 
-import './styles.css';
+import { Container } from './styles';
 
-
-
-
-const PokemonCard: FC<{ info: Pokemon }> = ({ info }) => {
+const PokeCard: FC<{ info: Pokemon }> = ({ info }) => {
   const pokemonInfo = {
     weight: info.weight,
     height: info.weight,
@@ -20,11 +17,11 @@ const PokemonCard: FC<{ info: Pokemon }> = ({ info }) => {
   };
 
   return (
-    <div className="poke-card">
-      <Info info={pokemonInfo}/>
-      <Stats stats={info.stats}/>
-    </div>
-  )
+    <Container>
+      <Info info={pokemonInfo} />
+      <Stats stats={info.stats} />
+    </Container>
+  );
 };
 
-export default PokemonCard;
+export default PokeCard;

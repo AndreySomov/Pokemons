@@ -1,9 +1,11 @@
-.poke-info-text {
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-}
+import styled from 'styled-components';
 
-.poke-info-container {
-    display: flex;
-}
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+`;
+
+export const Container = styled.div`
+  display: flex;
+`;

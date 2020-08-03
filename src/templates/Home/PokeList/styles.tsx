@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.section.attrs({
-  className: 'flex flex-col justify-center items-center',
-})``;
+export const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  padding: 40px 0;
+`;

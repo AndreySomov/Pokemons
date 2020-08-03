@@ -7,13 +7,12 @@ const {
 
 const LayoutComponent: React.FC = ({ children }) => (
   <Layout>
-    <Sider>Sider</Sider>
-    {children}
+    <Header>Header</Header>
     <Layout>
-      <Header>Header</Header>
+      <Sider>Sider</Sider>
       <Content>{children}</Content>
-      <Footer>Footer</Footer>
     </Layout>
+    <Footer>Footer</Footer>
   </Layout>
 );
 
