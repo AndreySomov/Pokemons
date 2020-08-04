@@ -1,12 +1,10 @@
 import React, { FC } from 'react';
 import { Sprites } from '@types';
 
-import { Typography, Space } from 'antd';
+import { Typography } from 'antd';
 import { TextWrapper, Container } from './styles';
 
 const { Title, Text } = Typography;
-
-
 
 interface Info {
   name: string;
@@ -25,7 +23,7 @@ const Info: FC<{ info: Info }> = ({ info }) => (
       height="150"
     />
     <TextWrapper>
-      <Title level={2}>{info.name}</Title>
+      <Title level={4}>{info.name.toUpperCase()}</Title>
       <Text>
         Id:
         {info.id}

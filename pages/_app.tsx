@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
+
+import InitApp from '../src/components/InitApp';
 import { useStore } from '../src/store';
 import 'antd/dist/antd.css';
 
@@ -22,7 +24,9 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <InitApp>
+        <Component {...pageProps} />
+      </InitApp>
     </Provider>
   );
 }
