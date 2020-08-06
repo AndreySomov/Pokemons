@@ -1,38 +1,26 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { Pagination } from 'antd';
 
-import { getCommonPokes } from 'utils';
+import { useCurrentPokes } from 'utils/hooks';
 import PokeCard from 'components/PokeCard';
 
 import { Container } from './styles';
 
 const PokeList: React.FC = () => {
-  const activeCategories = useSelector((state) => state.categories.activeCategories);
-  const pokes1 = useSelector((state) => state.categories.data);
-  const pokes = useSelector((state) => state.pokes.pokesData);
-  let formattedPokes;
-
-  if (activeCategories.length) {
-    formattedPokes = getCommonPokes(pokes1, activeCategories);
-    console.log(formattedPokes);
-  }
-
-  function onChange(pageNumber) {
-    console.log('Page: ', pageNumber);
-  }
+  const [page, setPage] = useState(0);
+  const pokes = useCurrentPokes();
 
   return (
     <>
       <Pagination
-        style={{ position: 'fixed', zIndex: 1, right: 0 }}
         defaultCurrent={1}
         total={pokes.length}
-        onChange={onChange}
+        onChange={(chosenPage) => setPage(chosenPage - 1)}
         showSizeChanger={false}
+        pageSize={8}
       />
       <Container>
-        {pokes.map((poke) => <PokeCard info={poke} />)}
+        {pokes.slice(page * 8, page * 8 + 8).map((poke) => <PokeCard key={poke} pokeUrl={poke} />)}
       </Container>
     </>
   );

@@ -3,9 +3,11 @@ import { useSelector } from 'react-redux';
 import { Input, AutoComplete } from 'antd';
 import { SelectProps } from 'antd/es/select';
 
+const flatNames = (data) => Object.keys(data).reduce((sum,key)=> sum.concat(data[key]), []);
+
 const SearchInput: React.FC = () => {
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
-  const basePokesList = useSelector((state) => state.pokes.pokesList);
+  const basePokesList = useSelector((state) => flatNames(state.data));
 
   const searchResult = (query: string) => basePokesList.filter((item) => item.name.match(query))
     .map((item) => (
@@ -29,7 +31,7 @@ const SearchInput: React.FC = () => {
   return (
     <AutoComplete
       dropdownMatchSelectWidth={252}
-      style={{ width: 300 }}
+      style={{ width: '100%' }}
       options={options}
       onSelect={onSelect}
       onSearch={handleSearch}

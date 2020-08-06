@@ -6,23 +6,15 @@ import SearchInput from './SearchInput';
 
 const { Content, Header, Sider } = Layout;
 
-
 const LayoutComponent: React.FC = ({ children }) => {
   return (
-    <Layout>
-      <Header
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <SearchInput />
-      </Header>
-      <Layout>
-        <Sider>
+    <Layout hasSider style={{ height: '100vh' }}>
+      <Layout style={{ height: '100%' }}>
+        <Sider width="20%" style={{ background: 'white', padding: '20px' }}>
+          <SearchInput />
           <Filters />
         </Sider>
-        <Content>{children}</Content>
+        <Content style={{ height: '100%', width: '100%' }}>{children}</Content>
       </Layout>
     </Layout>
   );
