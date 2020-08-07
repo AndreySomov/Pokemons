@@ -1,19 +1,23 @@
 import * as React from 'react';
 import { Layout } from 'antd';
 
-const {
-  Header, Footer, Sider, Content,
-} = Layout;
+import Filters from './Filters';
+import SearchInput from './SearchInput';
 
-const LayoutComponent: React.FC = ({ children }) => (
-  <Layout>
-    <Header>Header</Header>
-    <Layout>
-      <Sider>Sider</Sider>
-      <Content>{children}</Content>
+const { Content, Sider } = Layout;
+
+const LayoutComponent: React.FC = ({ children }) => {
+  return (
+    <Layout hasSider style={{ height: '100vh' }}>
+      <Layout style={{ height: '100%' }}>
+        <Sider width="20%" style={{ background: 'white', padding: '20px' }}>
+          <SearchInput />
+          <Filters />
+        </Sider>
+        <Content style={{ height: '100%', width: '100%' }}>{children}</Content>
+      </Layout>
     </Layout>
-    <Footer>Footer</Footer>
-  </Layout>
-);
+  );
+};
 
 export default LayoutComponent;

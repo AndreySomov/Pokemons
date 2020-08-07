@@ -6,4 +6,6 @@ export const Container = styled.div`
   width: 100%;
   justify-content: center;
   padding: 40px 0;
+  overflow: auto;
+  margin: auto;
 `;

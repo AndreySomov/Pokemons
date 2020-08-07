@@ -1,26 +1,19 @@
 export interface Pokemon {
-  abilities: any;
   base_experience: number;
-  forms: any;
-  game_indices: any;
   height: number;
-  held_items: any;
   id: number;
   is_default: boolean;
   location_area_encounters: string;
-  moves: any;
   name: string;
   order: number;
-  species: any;
   sprites: Sprites;
   stats: Array<Stat>;
-  types: any;
+  types: Array<PokeType>;
   weight: number;
 }
 
 export interface Stat {
   base_stat: number;
-  effort: number;
   stat: {
     name: string;
     url: string;
@@ -36,4 +29,11 @@ export interface Sprites {
   front_female: string | null;
   front_shiny: string | null;
   front_shiny_female: string | null;
+}
+
+export interface PokeType {
+  type: {
+    name: string;
+    url: string;
+  }
 }

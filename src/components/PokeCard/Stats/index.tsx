@@ -14,7 +14,7 @@ const Stats: FC<{ stats: Array<Stat> }> = ({ stats }) => (
         percent={stat.base_stat}
         status="active"
         strokeColor={stat.base_stat > 33 ? (stat.base_stat > 66 ? 'green' : 'blue') : 'red'}
-        format={(percent) => percent + ' ' + stat.stat.name}
+        format={(percent) => `${percent} ${stat.stat.name}`}
       />
     ))}
   </Container>

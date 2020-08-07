@@ -5,10 +5,9 @@ import {
   FETCH_CATEGORIES_FAILURE,
   FETCH_CATEGORIES_SUCCESS,
   CHANGE_ACTIVE_CATEGORIES,
-  SET_POKE_TO_CACHE,
 } from '../constants';
 
-export default (state = initialStore, action) => {
+export default (state = initialStore.categories, action) => {
   switch (action.type) {
     case CHANGE_ACTIVE_CATEGORIES:
       return {
@@ -30,12 +29,6 @@ export default (state = initialStore, action) => {
       return {
         ...state,
         data: action.payload,
-      };
-
-    case SET_POKE_TO_CACHE:
-      return {
-        ...state,
-        pokesCache: Object.assign(state.pokesCache, { [action.payload.name]: action.payload.data }),
       };
 
     default:

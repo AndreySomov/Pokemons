@@ -1,6 +1,6 @@
 export default {
-  pokes: {
-    data: [],
-    isLoading: false,
-  },
+  data: {},
+  activeCategories: [],
+  isLoadingList: false,
+  pokesCache: {},
 };
