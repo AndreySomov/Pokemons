@@ -7,6 +7,13 @@ export const TextWrapper = styled.div`
   margin-left: 15px;
 `;
 
+export const ImgWrapper = styled.div`
+  width: 150px;
+`;
+
 export const Container = styled.div`
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
 `;

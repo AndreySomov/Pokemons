@@ -37,3 +37,14 @@ export interface PokeType {
     url: string;
   }
 }
+
+export interface EvolutionChain {
+  evolution_details: any;
+  evolves_to: Array<PokeType>;
+  species: Species;
+}
+
+export interface Species {
+  name: string;
+  url: string;
+}

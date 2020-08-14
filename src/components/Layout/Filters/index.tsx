@@ -7,7 +7,7 @@ import { changeActiveCategories } from 'store/actions';
 const Filters: React.FC = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.data);
-  const formattedCategories = Object.keys(categories).map((key) => ({ label: key, value: key }));
+  const formattedCategories = Object.keys(categories).map((key) => ({ value: key }));
 
   const onChange = (checkedValues) => {
     dispatch(changeActiveCategories(checkedValues));
@@ -15,10 +15,20 @@ const Filters: React.FC = () => {
 
   return (
     <Checkbox.Group
-      options={formattedCategories}
       onChange={onChange}
-      style={{ display: 'flex', flexWrap: 'wrap', marginTop: '30px' }}
-    />
+      style={{ marginTop: '30px', display: 'flex', flexDirection: 'column' }}
+    >
+      {formattedCategories.map(
+        (category) => (
+          <Checkbox
+            value={category.value}
+            style={{ color: 'white', marginLeft: '10px' }}
+          >
+            {category.value}
+          </Checkbox>
+        ),
+      )}
+    </Checkbox.Group>
   );
 };
 

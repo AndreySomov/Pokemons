@@ -3,16 +3,18 @@ import {
   FETCH_CATEGORIES_FAILURE,
   FETCH_CATEGORIES,
   CHANGE_ACTIVE_CATEGORIES,
-  SET_POKE_TO_CACHE,
+  SET_INFO_TO_CACHE,
+  SET_SEARCH_QUERY,
 } from '../constants';
+
+export const setSearchQuery = (query) => ({
+  type: SET_SEARCH_QUERY,
+  payload: query,
+});
 
 export const changeActiveCategories = (checkedCategories) => ({
   type: CHANGE_ACTIVE_CATEGORIES,
   payload: checkedCategories,
-});
-
-export const fetchCategories = () => ({
-  type: FETCH_CATEGORIES,
 });
 
 export const fetchCategoriesFailure = () => ({
@@ -24,10 +26,7 @@ export const fetchCategoriesSuccess = (data) => ({
   payload: data,
 });
 
-export const setPokeToCache = (data) => {
-  console.log(data);
-  return ({
-    type: SET_POKE_TO_CACHE,
-    payload: data,
-  });
-};
+export const setInfoToCache = (data) => ({
+  type: SET_INFO_TO_CACHE,
+  payload: data,
+});

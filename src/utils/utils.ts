@@ -30,3 +30,17 @@ export const normalizeCategory = (categories) => {
   som.all = Array.from(all);
   return som;
 };
+
+export const normalizeEvo = (data) => {
+  const result = [];
+
+  const func = (obj) => {
+    if (obj.evolves_to.length) {
+      obj.evolves_to.forEach((d) => func(d));
+    }
+    result.push(obj);
+  };
+
+  func(data);
+  return result;
+};

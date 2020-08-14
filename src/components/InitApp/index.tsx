@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Layout from 'components/Layout';
+import Loading from 'components/Loading';
 
-import { fetchCategoriesSuccess, fetchCategories } from 'store/actions';
+import { fetchCategoriesSuccess } from 'store/actions';
 import { getCategories } from 'api';
 import { normalizeCategory } from 'utils/utils';
 
@@ -11,19 +11,17 @@ const InitApp: React.FC = ({ children }) => {
   const isLoadingList = useSelector((store) => store.isLoadingList);
 
   useEffect(() => {
-    dispatch(fetchCategories());
-
-    getCategories()
-      .then((data) => dispatch(fetchCategoriesSuccess(normalizeCategory(data))));
+    (async () => {
+      const categories = await getCategories();
+      dispatch(fetchCategoriesSuccess(normalizeCategory(categories)));
+    })();
   }, []);
 
-  if (isLoadingList) return <Layout><div>Loading...</div></Layout>;
+  if (isLoadingList) return <Loading />;
 
   return (
     <>
-      <Layout>
-        {children}
-      </Layout>
+      {children}
     </>
   );
 };

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Input, AutoComplete } from 'antd';
 import { SelectProps } from 'antd/es/select';
 
+import { setSearchQuery } from 'store/actions';
+
 const SearchInput: React.FC = () => {
+  const dispatch = useDispatch();
   const [options, setOptions] = useState<SelectProps<object>['options']>([]);
   const basePokesList = useSelector((state) => state.data.all);
 
@@ -19,11 +22,8 @@ const SearchInput: React.FC = () => {
       }));
 
   const handleSearch = (value: string) => {
+    dispatch(setSearchQuery(value));
     setOptions(value ? searchResult(value) : []);
-  };
-
-  const onSelect = (value: string) => {
-    console.log('onSelect', value);
   };
 
   return (
@@ -31,10 +31,10 @@ const SearchInput: React.FC = () => {
       dropdownMatchSelectWidth={252}
       style={{ width: '100%' }}
       options={options}
-      onSelect={onSelect}
+      onSelect={handleSearch}
       onSearch={handleSearch}
     >
-      <Input.Search size="large" placeholder="input here" enterButton />
+      <Input size="large" placeholder="Find your pokemon" />
     </AutoComplete>
   );
 };
