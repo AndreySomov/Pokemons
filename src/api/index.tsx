@@ -6,7 +6,7 @@ export const fetchInfo = async (url) => {
   return data;
 };
 
-export const getCategories = async () => {
+export const fetchCategories = async () => {
   const res = await fetch(`${API_URL}type`);
   const data = await res.json();
   const result = await Promise.all(
@@ -14,4 +14,13 @@ export const getCategories = async () => {
   );
 
   return result;
+};
+
+export const fetchEvolution = async (speciesUrl) => {
+  const species = await fetch(speciesUrl);
+  const speciesData = await species.json();
+  const evo = await fetch(speciesData.evolution_chain.url);
+  const evoData = await evo.json();
+
+  return evoData;
 };

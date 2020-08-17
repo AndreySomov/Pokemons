@@ -32,6 +32,7 @@ export const normalizeCategory = (categories) => {
 };
 
 export const normalizeEvo = (data) => {
+  if (!data) return [];
   const result = [];
 
   const func = (obj) => {
@@ -41,6 +42,6 @@ export const normalizeEvo = (data) => {
     result.push(obj);
   };
 
-  func(data);
+  func(data.chain);
   return result;
 };

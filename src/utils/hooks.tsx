@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchInfo } from 'api';
-import { getCommonPokes } from 'utils/utils';
+import { fetchInfo, fetchEvolution } from 'api';
+import { getCommonPokes, normalizeEvo } from 'utils/utils';
 import { setInfoToCache } from 'store/actions';
 import { API_URL } from '../constants/env';
 
@@ -20,39 +20,31 @@ export const usePoke = (pokeName) => {
   const url = `${API_URL}pokemon/${pokeName}`;
   const dispatch = useDispatch();
   const cache = useSelector((state) => state.cache);
-  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
-      if (!cache[url]) {
-        setLoading(true);
+      if (url && !cache[url]) {
         const pokeInfo = await fetchInfo(url);
         dispatch(setInfoToCache({ data: pokeInfo, url }));
-        setLoading(false);
       }
     })();
-  }, []);
+  }, [pokeName]);
 
-  return [cache[url], isLoading];
+  return cache[url];
 };
 
-export const usePokeEvo = (speciesUrl) => {
-  console.log(speciesUrl);
+export const usePokeEvo = (url) => {
   const dispatch = useDispatch();
   const cache = useSelector((state) => state.cache);
-  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
-      if (!cache[speciesUrl]) {
-        setLoading(true);
-        const species = await fetchInfo(speciesUrl);
-        const evolutionChain = await fetchInfo(species.evolution_chain.url);
-        dispatch(setInfoToCache({ data: evolutionChain, url: speciesUrl }));
-        setLoading(false);
+      if (url && !cache[url]) {
+        const data = await fetchEvolution(url);
+        dispatch(setInfoToCache({ data, url }));
       }
     })();
-  }, []);
+  }, [url]);
 
-  return [cache[speciesUrl], isLoading];
+  return normalizeEvo(cache[url]);
 };

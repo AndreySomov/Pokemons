@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from 'components/Loading';
 
 import { fetchCategoriesSuccess } from 'store/actions';
-import { getCategories } from 'api';
+import { fetchCategories } from 'api';
 import { normalizeCategory } from 'utils/utils';
 
 const InitApp: React.FC = ({ children }) => {
@@ -12,7 +12,7 @@ const InitApp: React.FC = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const categories = await getCategories();
+      const categories = await fetchCategories();
       dispatch(fetchCategoriesSuccess(normalizeCategory(categories)));
     })();
   }, []);

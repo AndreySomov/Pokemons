@@ -1,18 +1,23 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { usePoke } from 'utils/hooks';
+import BackButton from 'components/BackButton';
+import Loading from 'components/Loading';
+import { usePokeEvo, usePoke } from 'utils/hooks';
+import { Container } from './styles';
 
 const PokePage: React.FC = () => {
   const router = useRouter();
-  const { name } = router.query;
-  if (!name) return <div></div>
-  console.log('name', name);
-  const [pokeData, isLoading] = usePoke(name);
+  const poke = usePoke(router.query.name);
+  const evo = usePokeEvo(poke && poke.species.url);
 
-  console.log(pokeData);
+  if (!evo) return <Loading />;
+  console.log(evo);
+
   return (
-    <div>{name}</div>
+    <Container>
+      <BackButton />
+    </Container>
   );
 };
 

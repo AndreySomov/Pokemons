@@ -8,7 +8,7 @@ import {
   SET_SEARCH_QUERY,
 } from '../constants';
 
-export default (state = initialStore, action) => {
+const reducer = (state = initialStore, action) => {
   switch (action.type) {
     case SET_SEARCH_QUERY:
       return {
@@ -37,10 +37,15 @@ export default (state = initialStore, action) => {
     case SET_INFO_TO_CACHE:
       return {
         ...state,
-        cache: Object.assign(state.cache, { [action.payload.url]: action.payload.data }),
+        cache: {
+          ...state.cache,
+          [action.payload.url]: action.payload.data,
+        },
       };
 
     default:
       return state;
   }
 };
+
+export default reducer;

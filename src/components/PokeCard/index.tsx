@@ -8,7 +8,7 @@ import TypeList from './TypeList';
 import { Container } from './styles';
 
 const PokeCard: FC<{ pokeName: string }> = ({ pokeName }) => {
-  const [pokeData, isLoading] = usePoke(pokeName);
+  const pokeData = usePoke(pokeName);
 
   return (
     <Container>
@@ -23,7 +23,7 @@ const PokeCard: FC<{ pokeName: string }> = ({ pokeName }) => {
           }}
         >
           <Skeleton
-            loading={isLoading}
+            loading={!pokeData}
             avatar
             active
             title

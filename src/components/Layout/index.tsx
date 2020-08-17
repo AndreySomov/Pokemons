@@ -13,7 +13,16 @@ const LayoutComponent: React.FC = ({ children }) => (
         <SearchInput />
         <Filters />
       </Sider>
-      <Content style={{ background: '#181C1D', height: '100%', width: '100%', overflow: 'hidden' }}>{children}</Content>
+      <Content
+        style={{
+          background: '#181C1D',
+          height: '100%',
+          width: '100%',
+          overflow: 'hidden',
+        }}
+      >
+        {children}
+      </Content>
     </Layout>
   </Layout>
 );
