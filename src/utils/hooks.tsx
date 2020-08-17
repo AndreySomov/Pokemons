@@ -22,12 +22,9 @@ export const usePoke = (pokeName) => {
   const cache = useSelector((state) => state.cache);
 
   useEffect(() => {
-    (async () => {
-      if (url && !cache[url]) {
-        const pokeInfo = await fetchInfo(url);
-        dispatch(setInfoToCache({ data: pokeInfo, url }));
-      }
-    })();
+    if (pokeName && !cache[url]) {
+      fetchInfo(url).then((pokeInfo) => dispatch(setInfoToCache({ data: pokeInfo, url })));
+    }
   }, [pokeName]);
 
   return cache[url];

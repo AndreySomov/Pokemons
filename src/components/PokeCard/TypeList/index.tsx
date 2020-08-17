@@ -4,7 +4,11 @@ import { PokeType } from '@types';
 
 const TypeList: FC<{ pokeTypes: Array<PokeType> }> = ({ pokeTypes }) => (
   <div>
-    {pokeTypes.map((type) => <Tag color="magenta">{type.type.name.toUpperCase()}</Tag>)}
+    {pokeTypes.map((type) => (
+      <Tag color="magenta" key={type.type.name}>
+        {type.type.name.toUpperCase()}
+      </Tag>
+    ))}
   </div>
 );
 

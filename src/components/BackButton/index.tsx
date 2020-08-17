@@ -8,7 +8,7 @@ const BackButton: React.FC = () => {
   return (
     <Button
       type="primary"
-      onClick={() => router.back()}
+      onClick={() => router.push('/')}
       size="middle"
     >
       Back
