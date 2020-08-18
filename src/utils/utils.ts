@@ -1,5 +1,7 @@
 import * as R from 'ramda';
 
+import { EvolutionChain } from '@types';
+
 export const getCommonPokes = (categories, activeCategory) => {
   const filteredCategories = [];
   for (const key in categories) {
@@ -31,7 +33,7 @@ export const normalizeCategory = (categories) => {
   return som;
 };
 
-export const normalizeEvo = (data) => {
+export const normalizeEvo = (data): Array<EvolutionChain> => {
   if (!data) return [];
   const result = [];
 

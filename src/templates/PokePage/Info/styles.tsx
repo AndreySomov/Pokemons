@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  width: 100%;
+  justify-content: center; 
   padding: 20px;
-  color: white;
-  width: 100%;
-`;
-
-export const Wrapper = styled.div`
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
 `;

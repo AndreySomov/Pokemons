@@ -10,6 +10,7 @@ export interface Pokemon {
   stats: Array<Stat>;
   types: Array<PokeType>;
   weight: number;
+  species: Species,
 }
 
 export interface Stat {

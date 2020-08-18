@@ -1,6 +1,7 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Pokemon, EvolutionChain } from '@types';
 import { fetchInfo, fetchEvolution } from 'api';
 import { getCommonPokes, normalizeEvo } from 'utils/utils';
 import { setInfoToCache } from 'store/actions';
@@ -16,7 +17,7 @@ export const useCurrentPokes = (): Array<string> => {
     : formattedPokes || [];
 };
 
-export const usePoke = (pokeName) => {
+export const usePoke = (pokeName: string| string[]): Pokemon | undefined => {
   const url = `${API_URL}pokemon/${pokeName}`;
   const dispatch = useDispatch();
   const cache = useSelector((state) => state.cache);
@@ -30,7 +31,7 @@ export const usePoke = (pokeName) => {
   return cache[url];
 };
 
-export const usePokeEvo = (url) => {
+export const usePokeEvo = (url: string): Array<EvolutionChain> | undefined => {
   const dispatch = useDispatch();
   const cache = useSelector((state) => state.cache);
 
